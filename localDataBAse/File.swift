@@ -1,24 +1,16 @@
-//
-//  File.swift
-//  localDataBAse
-//
-//  Created by R86 on 31/03/23.
-//
-
 import Foundation
 import SQLite3
-
 
 struct Data {
   var id: Int
   var name: String
 }
 
-
 class Sqlite {
     static var file : OpaquePointer?
 
    static func createFile() {
+       
        var x = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
        x.appendPathComponent("My Sqlite file3.db")
        sqlite3_open(x.path, &file)
@@ -33,7 +25,6 @@ class Sqlite {
        sqlite3_prepare(file, q, -1, &table, nil)
        print("Create table")
        sqlite3_step(table)
-       
         
     }
     static func addData(id:Int,name:String) {
@@ -43,7 +34,6 @@ class Sqlite {
        print("Create data")
        sqlite3_step(data)
        
-        
     }
     static func getData()->[Data] {
         var arr = [Data]()
@@ -69,7 +59,6 @@ class Sqlite {
        sqlite3_prepare(file, q, -1, &table, nil)
        sqlite3_step(table)
        print("Delete data")
+       
     }
 }
-
-
